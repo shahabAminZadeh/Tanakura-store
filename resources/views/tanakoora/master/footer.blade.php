@@ -156,12 +156,12 @@ $sting=\App\Models\Stting::find(1);
                     <ul class="app-btn">
                         <li>
                             <a href="https://www.apple.com/store" target="_blank">
-                                <img src="assets/images/app-store.png" alt="Image">
+                                <img src="src="{{asset('tanakoora/assets/images/app-store.png')}}" alt="Image">
                             </a>
                         </li>
                         <li>
                             <a href="https://play.google.com/store/apps" target="_blank">
-                                <img src="assets/images/google-play.png" alt="Image">
+                                <img src="src="{{asset('tanakoora/assets/images/google-play.png')}}" alt="Image">
                             </a>
                         </li>
                     </ul>
@@ -170,19 +170,19 @@ $sting=\App\Models\Stting::find(1);
 
                     <ul class="payment-option">
                         <li>
-                            <img src="assets/images/payment/payment-1.png" alt="Image">
+                            <img src="src="{{asset('tanakoora/assets/images/payment/payment-1.png')}}" alt="Image">
                         </li>
                         <li>
-                            <img src="assets/images/payment/payment-2.png" alt="Image">
+                            <img src="src="{{asset('tanakoora/assets/images/payment/payment-2.png')}}" alt="Image">
                         </li>
                         <li>
-                            <img src="assets/images/payment/payment-3.png" alt="Image">
+                            <img src="src="{{asset('tanakoora/assets/images/payment/payment-3.png')}}" alt="Image">
                         </li>
                         <li>
-                            <img src="assets/images/payment/payment-4.png" alt="Image">
+                            <img src="src="{{asset('tanakoora/assets/images/payment/payment-4.png')}}" alt="Image">
                         </li>
                         <li>
-                            <img src="assets/images/payment/payment-5.png" alt="Image">
+                            <img src="src="{{asset('tanakoora/assets/images/payment/payment-5.png')}}" alt="Image">
                         </li>
                     </ul>
                 </div>
@@ -237,7 +237,7 @@ $sting=\App\Models\Stting::find(1);
 
                     <div class="col-lg-6">
                         <div class="newsletter-img">
-                            <img src="assets/images/newsletter-img.jpg" alt="Image">
+                            <img src="{{asset('tanakoora/assets/images/newsletter-img.jpg')}}" alt="Image">
                         </div>
                     </div>
                 </div>
@@ -303,7 +303,7 @@ $sting=\App\Models\Stting::find(1);
                             </div>
 
                             <a href="shopping-cart.html" class="default-btn radius-btn">
-                                <button type="submit" onclick="addToCard()" class="ri-shopping-cart-line"></button>
+                                <button type="submit" onclick="" class="ri-shopping-cart-line"></button>
                                 افزودن به سبد
                             </a>
                         </div>
@@ -404,6 +404,7 @@ $sting=\App\Models\Stting::find(1);
 <script src="{{asset('tanakoora/assets/js/ajaxchimp.min.js')}}"></script>
 <!-- Custom JS -->
 <script src="{{asset('tanakoora/assets/js/custom.js')}}"></script>
+<script src="{{asset('tanakoora/assets/js/search.js')}}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script>
@@ -431,6 +432,31 @@ $sting=\App\Models\Stting::find(1);
 
 
 </script>
+<script type="text/javascript">
+    const site_url="http://127.0.0.1:8000/";
+    $("body").on("keyup","#search",function (){
+        let text = $("#search").val();
+
+        if (text.length>0)
+        {
+            $.ajax({
+                data:{search:text},
+                url:site_url + "search/search_Products",
+                method:'post',
+                beforeSend: function(request){
+                    return request.setRequestHeader('X-CSRF-TOKEN',("meta[name='csrf-token']"))
+                },
+                success:function (result){
+                    $("#searchProducts").html(result);
+                }
+            });
+
+        }
+        if (text.length<1) $("#searchProducts").html("")
+    });
+
+</script>
+
 <script type="text/javascript">
     $(document).ready(
         function () {

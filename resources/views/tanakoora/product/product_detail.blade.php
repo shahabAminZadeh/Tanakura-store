@@ -94,7 +94,8 @@
                         <a href="#" class="rating-count">{{count($review_count)}} (نظر مشتری)</a>
                     </div>
 <p>{{$product->long_description}}</p>
-                    <div class="quantities-wrap">
+                    <form  action="{{route('cart.store')}}" method="post">
+                        @csrf
                         <span class="quantities">تعداد:</span>
 
                         <div class="product-quantity">
@@ -103,19 +104,53 @@
 											<i class="ri-subtract-line"></i>
 										</span>
 
-                                <input type="text" value="1">
+                                <input type="text" name="qty">
 
                                 <span class="plus-btn">
 											<i class="ri-add-line"></i>
 										</span>
                             </div>
                         </div>
+                        @if($product->color == NULL)
 
-                        <a href="shopping-cart.html" class="default-btn radius-btn">
-                            <i class="ri-shopping-cart-line"></i>
-                            افزودن به سبد
-                        </a>
-                    </div>
+                        @else
+
+                            <div class="attr-detail attr-size mb-30">
+                                <strong class="mr-10" style="width: 50px">رنگ:</strong>
+                                <select name="color" class="form-control " id="color">
+                                    <option selected="" disabled=""> انتخاب کنید </option>
+                                    @foreach($product_color as $color)
+                                        <option value="{{$color}}">{{ucwords($color)}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @endif
+
+
+                        @if($product->size == NULL)
+
+                        @else
+
+                            <div class="attr-detail attr-size mb-30">
+                                <strong class="mr-10" style="width: 50px">سایز:</strong>
+                                <select name="size" class="form-control " id="size">
+                                    <option selected="" disabled=""> انتخاب کنید </option>
+                                    @foreach($product_size as $size)
+                                        <option value="{{$size}}">{{ucwords($size)}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @endif
+
+
+
+                            <input class="hidden" name="id" value="{{$product->id}}">
+                            <input class="hidden" name="name" value="{{$product->name}}">
+                            <input class="hidden" name="selling_Price" value="{{$product->selling_Price}}">
+                            <button type="submit" class="ri-shopping-cart-line"> افزودن به سبد 2 </button>
+                    </form>
+
+
 
                     <a href="wishlist.html" class="default-btn radius-btn wishlist-btn">
                         <i class="ri-heart-line"></i>
@@ -169,37 +204,6 @@
 
 
                     </ul>
-
-                    @if($product->color == NULL)
-
-                    @else
-
-                        <div class="attr-detail attr-size mb-30">
-                           <strong class="mr-10" style="width: 50px">رنگ:</strong>
-                            <select class="form-control " id="color">
-                                <option selected="" disabled=""> انتخاب کنید </option>
-                                @foreach($product_color as $color)
-                                    <option value="{{$color}}">{{ucwords($color)}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    @endif
-
-
-                    @if($product->size == NULL)
-
-                    @else
-
-                        <div class="attr-detail attr-size mb-30">
-                            <strong class="mr-10" style="width: 50px">سایز:</strong>
-                            <select class="form-control " id="color">
-                                <option selected="" disabled=""> انتخاب کنید </option>
-                                @foreach($product_size as $size)
-                                    <option value="{{$size}}">{{ucwords($size)}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    @endif
 
 
 
@@ -569,7 +573,7 @@
                         </li>
                     </ul>
 
-                    <a href="shopping-cart.html" class="default-btn radius-btn">
+                    <a href="{{route('add.basket')}}" class="default-btn radius-btn">
                         <i class="ri-shopping-cart-line"></i>
                         افزودن به سبد
                     </a>

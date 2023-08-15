@@ -10,6 +10,7 @@ use App\Http\Controllers\backend\CouponController;
 use App\Http\Controllers\backend\DistrictController;
 use App\Http\Controllers\backend\DivisionController;
 use App\Http\Controllers\backend\ProductController;
+use App\Http\Controllers\backend\RoleController;
 use App\Http\Controllers\backend\SeoController;
 use App\Http\Controllers\backend\SliderController;
 use App\Http\Controllers\backend\StateController;
@@ -20,6 +21,7 @@ use App\Http\Controllers\user\ReviewController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
 use App\Http\Controllers\WishlistController;
+use App\Support\storage\Contracts\StorageInterFace;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -151,12 +153,17 @@ Route::prefix('banner')->group(function ()
 });
 Route::prefix('coupon')->group(function ()
 {
+    ///////////////backend
     Route::get('index',[CouponController::class,'index'])->name('ُCouponIndex');
     Route::get('create',[CouponController::class,'create'])->name('ُCouponCreate');
     Route::get('edit/{coupon}',[CouponController::class,'edit'])->name('ُCouponEdit');
     Route::post('store',[CouponController::class,'store'])->name('ُCouponStore');
     Route::put('{id}/update',[CouponController::class,'update'])->name('ُCouponUpdate');
     Route::get('{coupon}/destroy',[CouponController::class,'destroy'])->name('ُCouponDestroy');
+    ///////////////frontend
+    Route::post('coupon/apply',[\App\Http\Controllers\frontend\CouponController::class,'apply'])->name('coupon.apply');
+
+
 
 });
 
@@ -261,5 +268,73 @@ Route::prefix('sting')->group(function ()
 
 Route::prefix('search')->group(function ()
 {
-    Route::post('product_search',[\App\Http\Controllers\frontend\indexController::class,'product_search'])->name('product_search');
+   Route::post('product_search',[\App\Http\Controllers\frontend\indexController::class,'product_search'])->name('product_search');
+   Route::post('/search_Products',[\App\Http\Controllers\frontend\indexController::class,'searchProducts']);
+
+});
+
+
+
+///////////////permissionRoute
+Route::prefix('permission')->group(function ()
+{
+    Route::get('permission/index',[RoleController::class,'permission_index'])->name('IndexPermission');
+    Route::get('permission/create',[RoleController::class,'permission_create'])->name('CreatePermission');
+    Route::get('permission/edit/{permission}',[RoleController::class,'permission_edit'])->name('ُEditPermission');
+    Route::post('permission/store',[RoleController::class,'permission_store'])->name('ُStorePermission');
+    Route::PUT('permission/{id}/update',[RoleController::class,'permission_update'])->name('ُUpdatePermission');
+    Route::get('permission/{permission}/destroy',[RoleController::class,'permission_destroy'])->name('ُDestroyPermission');
+});
+///////////////RoleRoute
+Route::prefix('role')->group(function ()
+{
+    Route::get('role/index',[RoleController::class,'role_index'])->name('IndexRole');
+    Route::get('role/create',[RoleController::class,'role_create'])->name('CreateRole');
+    Route::get('role/edit/{role}',[RoleController::class,'role_edit'])->name('ُEditRole');
+    Route::post('role/store',[RoleController::class,'role_store'])->name('ُStoreRole');
+    Route::PUT('role/{id}/update',[RoleController::class,'role_update'])->name('ُUpdateRole');
+    Route::get('role/{role}/destroy',[RoleController::class,'role_destroy'])->name('ُDestroyRole');
+
+    ////////////////////Permission Role Route PRR
+
+    Route::get('RollPermission/create',[RoleController::class,'roll_permission_create'])->name('rollPermissionCreate');
+    Route::post('RollPermission/store',[RoleController::class,'roll_permission_store'])->name('rollPermissionStore');
+    Route::get('RollPermission/index',[RoleController::class,'roll_permission_index'])->name('rollPermissionIndex');
+    Route::get('RollPermission/edit/{id}',[RoleController::class,'roll_permission_edit'])->name('rollPermissionEdit');
+    Route::get('RollPermission/update/{id}',[RoleController::class,'roll_permission_update'])->name('rollPermissionUpdate');
+    Route::get('RollPermission/destroy/{id}',[RoleController::class,'roll_permission_destroy'])->name('rollPermissionِDestroy');
+
+
+});
+
+
+////////////Card
+
+Route::prefix('card')->group(function ()
+{
+    Route::get('cart', [ProductController::class, 'cart'])->name('cart');
+    Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add.to.cart');
+    Route::patch('update-cart', [ProductController::class, 'update'])->name('update.cart');
+    Route::delete('remove-from-cart', [ProductController::class, 'remove'])->name('remove.from.cart');
+
+});
+
+///////////////////Cart
+Route::prefix('cart')->group(function ()
+{
+    Route::get('cart',[CartController::class,'index'])->name('cart.index');
+    Route::post('cart',[CartController::class,'store'])->name('cart.store');
+    Route::get('empty',function (){
+        \Cart::destroy();
+    });
+});
+
+////////////////Basket
+Route::prefix('basket')->group(function ()
+{
+   Route::get('add/basket/{pro}',[\App\Http\Controllers\frontend\BasketController::class,'add'])->name('add.basket');
+   Route::get('index/basket',[\App\Http\Controllers\frontend\BasketController::class,'index'])->name('index.basket');
+   Route::get('basket/clear',function (){
+       resolve(StorageInterFace::class)->clear();
+   });
 });

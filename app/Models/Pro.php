@@ -11,6 +11,10 @@ class Pro extends Model
 {
     use HasFactory, Markable;
     protected $guarded=[];
+    public function hasStock(int $qty)
+    {
+        return $this-> qty >=  $qty;
+    }
     public function vendor()
     {
         return $this->belongsTo(User::class,'vendor_id','id');
@@ -31,5 +35,7 @@ class Pro extends Model
         Favorite::class,
     ];
     use HasFactory;
+
+
 
 }

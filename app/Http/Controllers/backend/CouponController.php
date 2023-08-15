@@ -24,15 +24,14 @@ class CouponController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'discount' => 'required',
-            'validity' => 'required',
+            'code' => 'required',
+            'type' => 'required',
         ]);
         Coupon::insert([
-            'name'=>$request->name,
-            'discount'=>$request->discount,
-             'validity'=>$request->validity,
-            'created_at'=>Carbon::now(),
+            'code'=>$request->code,
+            'type'=>$request->type,
+             'value'=>$request->value,
+             'percent_off'=>$request->percent_off,
         ]);
         $notification=array(
             'message'=>'ثبت با موفقیت انجام شد',
@@ -50,16 +49,15 @@ class CouponController extends Controller
     {
         // دریافت اطلاعات جدید از فرم
         $request->validate([
-            'name' => 'required',
-            'discount' => 'required',
-            'validity' => 'required',
+            'code' => 'required',
+            'type' => 'required',
         ]);
         $data = Coupon::find($id);
         $data->update([
-            'name'=>$request->name,
-            'discount'=>$request->discount,
-            'validity'=>$request->validity,
-
+            'code'=>$request->code,
+            'type'=>$request->type,
+            'value'=>$request->value,
+            'percent_off'=>$request->percent_off,
         ]);
         $notification=array(
             'message'=>'آپدیت  کوپون با موفقیت انجام شد',
@@ -81,10 +79,6 @@ class CouponController extends Controller
     }
     ////////////////////////////
 
-    public function GetSubCategory($category_id)
-    {
-        $subcat=SubCategory::where('category_id',$category_id)->orderBy('name','ASC')->get();
-        return json_encode($subcat);
-    }
+
 
 }

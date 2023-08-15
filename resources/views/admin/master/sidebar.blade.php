@@ -63,6 +63,7 @@
                         </li>
                     </ul>
                 </li>
+
                 <li class="nav-item has-treeview menu-open">
                     <a style="background-color: #548d69" href="#" class="nav-link active">
                         <i class="nav-icon fa fa-dashboard"></i>
@@ -371,6 +372,55 @@
                             <a href="{{route('StingSite')}}" class="nav-link ">
                                 <i class="fa fa-braille nav-icon"></i>
                                 <p> مشخصات سایت </p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview menu-open">
+                    <a style="background-color: #548d69" href="#" class="nav-link active">
+                        <i class="nav-icon fa fa-magnet"></i>
+                        <p>
+                            مدیریت دسترسی
+                            <i class="right fa fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('CreatePermission')}}" class="nav-link ">
+                                <i class="fa fa-braille nav-icon"></i>
+                                <p> افزودن اجازه </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a  href="{{route('IndexPermission')}}" class="nav-link">
+                                <i class="fa fa-braille nav-icon"></i>
+                                <p>لیست اجازه ها</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('CreateRole')}}" class="nav-link ">
+                                <i class="fa fa-braille nav-icon"></i>
+                                <p> افزودن نقش </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a  href="{{route('IndexRole')}}" class="nav-link">
+                                <i class="fa fa-braille nav-icon"></i>
+                                <p>لیست نقش ها</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a  href="{{route('rollPermissionCreate')}}" class="nav-link">
+                                <i class="fa fa-braille nav-icon"></i>
+                                <p>افزودن دسترسی ها</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a  href="{{route('rollPermissionIndex')}}" class="nav-link">
+                                <i class="fa fa-braille nav-icon"></i>
+                                <p>لیست دسترسی ها</p>
                             </a>
                         </li>
                     </ul>

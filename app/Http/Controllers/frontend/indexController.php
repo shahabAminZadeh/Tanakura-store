@@ -6,14 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Pro;
 use App\Models\SubCategory;
+use App\Support\Basket\Basket;
 use App\Support\storage\contracts\StorageInterFace;
 use Illuminate\Http\Request;
 
 class indexController extends Controller
 {
-    //
     public function index()
     {
+
 
 
         return view('tanakoora.index');
@@ -83,6 +84,14 @@ class indexController extends Controller
         $products=Pro::where('name','LIKE',"%$item%")->get();
         $new_product=Pro::orderBy('id','DESC')->limit(3)->get();
         return view('tanakoora.product.product_search',compact('categories','products','new_product','item'));
+    }
+    /////////////////////////////
+    public function searchProducts(Request $request){
+
+        $request->validate(['search'=>"required"]);
+        $item=$request->search;
+        $productsSearch=Pro::where('name','LIKE',"%$item%")->select('name','thambnail','selling_Price','id')->limit(6)->get();
+        return view('tanakoora.product.searchProduct',compact('productsSearch','item'));
     }
 
 }

@@ -1,4 +1,4 @@
-<div class="modal fade cart-shit" id="exampleModal-cart" tabindex="-1" aria-hidden="true">
+<div class="modal fade cart-shit" id="exampleModal-cart" tabindex="-2" aria-hidden="true">
     <div class="cart-shit-wrap">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -12,7 +12,7 @@
                     <ul class="cart-list">
                         <li>
                             <i class="ri-delete-bin-line"></i>
-                            <img src="{{asset('tanakoora/assets/images/products/product-18.jpg')}}" alt="Image">
+                            <img src="assets/images/products/product-18.jpg" alt="Image">
                             <a href="shopping-cart.html">
                                 گوشت تازه
                             </a>
@@ -21,7 +21,7 @@
 
                         <li>
                             <i class="ri-delete-bin-line"></i>
-                            <img src="{{asset('tanakoora/assets/images/products/product-6.jpg')}}" alt="Image">
+                            <img src="assets/images/products/product-6.jpg" alt="Image">
                             <a href="shopping-cart.html">
                                 خرچنگ تازه
                             </a>
@@ -30,7 +30,7 @@
 
                         <li>
                             <i class="ri-delete-bin-line"></i>
-                            <img src="{{asset('tanakoora//images/products/product-40.jpg')}}" alt="Image">
+                            <img src="assets/images/products/product-40.jpg" alt="Image">
                             <a href="shopping-cart.html">
                                 سبد نان مخلوط
                             </a>
@@ -39,7 +39,7 @@
 
                         <li>
                             <i class="ri-delete-bin-line"></i>
-                            <img src="{{asset('tanakoora/assets/images/products/product-42.jpg')}}" alt="Image">
+                            <img src="assets/images/products/product-42.jpg" alt="Image">
                             <a href="shopping-cart.html">
                                 سبد کامل سبزیجات
                             </a>

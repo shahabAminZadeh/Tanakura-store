@@ -34,6 +34,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{asset('tanakoora/assets/images/favicon.png')}}">
     <!-- Title -->
+
     <title>@yield('title')</title>
 </head>
 
@@ -152,10 +153,10 @@ $sting=\App\Models\Stting::all();
                 <div class="col-lg-7 col-md-8">
                     <form class="search-box" ACTION="{{route('product_search')}}" method="post">
                         @csrf
-                        <input id="search" type="text" name="search" placeholder="جستجو محصولات..." class="form-control">
-                        <button type="submit" class="search-btn">
-                            <i class="ri-search-line"></i>
-                        </button>
+                        <input onfocus="search_result_show()" onblur="search_result_hide()" id="search"  name="search" placeholder="جستجو محصولات..." class="form-control">
+                        <div style="height: 50px"   id="searchProducts">
+
+                        </div>
                     </form>
                 </div>
 
@@ -169,16 +170,19 @@ $sting=\App\Models\Stting::all();
 										</span>
                             </a>
                         </li>
-
+@inject('basket','App\Support\Basket\Basket')
                         <li class="cart-btn">
 									<span class="cart" data-bs-toggle="modal" data-bs-target="#exampleModal-cart">
 										<span class="wish-icon">
 											<i class="ri-shopping-cart-line"></i>
-											<span class="count">0</span>
+
+
+											<span class="count">{{$basket->itemCount()}}</span>
+
 										</span>
 									</span>
 
-                            <span class="amount">1100 تومان</span>
+                            <span class="amount"> تومان</span>
                         </li>
                     </ul>
                 </div>
@@ -298,6 +302,7 @@ $sting=\App\Models\Stting::all();
                                                     </li>
                                                     <li>
                                                         <a href="shopping-cart.html">سبد خرید</a>
+
                                                     </li>
                                                     <li>
                                                         <a href="wishlist.html">فهرست علاقه مندی</a>
@@ -427,7 +432,8 @@ $sting=\App\Models\Stting::all();
 </header>
 
 <!-- Start Cart Shit Area -->
-<div class="modal fade cart-shit" id="exampleModal-cart" tabindex="-1" aria-hidden="true">
+
+<div class="modal fade cart-shit" id="exampleModal-cart" tabindex="-2" aria-hidden="true">
     <div class="cart-shit-wrap">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -503,3 +509,11 @@ $sting=\App\Models\Stting::all();
     </div>
 </div>
 <!-- End Cart Shit Area -->
+<script>
+    function search_result_show(){
+        $("#searchProducts").slideDown();
+    }
+    function search_result_hide(){
+        $("#searchProducts").slideUp();
+    }
+</script>

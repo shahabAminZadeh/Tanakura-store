@@ -3,7 +3,7 @@
 <div class="container">
     <div class="rol m-2" >
         <div class="col-md-6"><div class="card">
-                <h4 style="margin: 15px;color: #4d4d4c">ثبت برند</h4>
+                <h4 style="margin: 15px;color: #4d4d4c">ثبت کوپون</h4>
                 <div class="card card-primary">
                     <form id="myForm" name="myForm" method="post" action="{{route('ُCouponStore')}}" enctype="multipart/form-data">
                         @csrf

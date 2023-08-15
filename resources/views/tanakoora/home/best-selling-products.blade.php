@@ -66,7 +66,7 @@
                             </li>
                         </ul>
 
-                        <a href="shopping-cart.html" class="default-btn radius-btn">
+                        <a href="" class="default-btn radius-btn">
                             <i class="ri-shopping-cart-line"></i>
                             افزودن به سبد
                         </a>

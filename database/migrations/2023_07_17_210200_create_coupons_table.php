@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('coupons', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('discount');
-            $table->string('validity');
+            $table->string('code')->nullable();
+            $table->enum('type',['percent','value']);
+            $table->integer('value')->nullable();
+            $table->integer('percent_off')->nullable();
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
