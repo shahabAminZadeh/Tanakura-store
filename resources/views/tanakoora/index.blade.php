@@ -6,6 +6,7 @@
         $special_offer=\App\Models\Pro::where('special_offer',1)->orderBy('id','DESC')->limit(3)->get();
         $featured=\App\Models\Pro::where('featured',1)->orderBy('id','DESC')->limit(3)->get();
         $vendors=\App\Models\User::where('status','active')->where('role','vendor')->orderBy('id','DESC')->limit(4)->get();
+
     @endphp
     @section('title')
         صفحه اصلی

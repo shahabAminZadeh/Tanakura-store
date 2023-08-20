@@ -92,7 +92,6 @@ $sting=\App\Models\Stting::find(1);
                     </ul>
                 </div>
             </div>
-
             <div class="col">
                 <div class="single-footer-widget ml-30">
                     <h3>پشتیبانی</h3>

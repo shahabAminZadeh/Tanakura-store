@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="row justify-content-center">
-                    @foreach($blags as $item)
+                    @foreach($blogs as $item)
                     <div class="col-lg-12 col-md-6">
                         <div class="single-blog blog-post">
                             <a href="blog-details.html">
@@ -93,7 +93,7 @@
 
                         </ul>
                     </div>
-@foreach($blags as $item)
+@foreach($blogs as $item)
 
                         <div class="sidebar-widget recent-post">
                             <ul>
@@ -114,34 +114,7 @@
 @endforeach
 
 
-                    <div class="sidebar-widget tags">
-                        <ul>
-                            <li class="p-0">
-                                <h3>برچسب ها</h3>
-                            </li>
-                            <li>
-                                <a href="tags.html">مواد غذایی</a>
-                            </li>
-                            <li>
-                                <a href="tags.html">سبزیجات</a>
-                            </li>
-                            <li>
-                                <a href="tags.html">ماهی</a>
-                            </li>
-                            <li>
-                                <a href="tags.html">فروشگاه</a>
-                            </li>
-                            <li>
-                                <a href="tags.html">نان و شیرینی</a>
-                            </li>
-                            <li>
-                                <a href="tags.html">میوه</a>
-                            </li>
-                            <li>
-                                <a href="tags.html">خوراک منجمد</a>
-                            </li>
-                        </ul>
-                    </div>
+
 
                     <div class="sidebars-ad mb-0">
                         <a href="products.html">

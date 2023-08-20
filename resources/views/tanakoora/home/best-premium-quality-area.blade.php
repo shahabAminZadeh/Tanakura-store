@@ -64,6 +64,7 @@
         </div>
     </div>
 </section>
+
 <section style="margin-top: 45px;border-radius: 15px" class="best-selling-products-area pb-24">
     <div class="container">
         <div class="delas-bg">
@@ -87,7 +88,7 @@
                                 </a>
                                 <ul class="products-cart-wish-view">
                                     <li>
-                                        <a href="wishlist.html" class="wish-btn">
+                                        <a href="{{route('addToWishList',$product->id)}}" class="wish-btn">
                                             <i class="ri-heart-line"></i>
                                         </a>
                                     </li>
@@ -115,36 +116,41 @@
                                 </ul>
                                 <ul class="products-rating">
                                     @php
-                                        $reviewArg=\App\Models\Review::where('product_id',$item->id)->where('status',1)->get();
+                                        $reviewArg=\App\Models\Review::where('product_id',$product->id)->where('status',1)->avg('rating');
                                     @endphp
                                     @if($reviewArg == 0)
                                         ستاره ای داده نشده
                                     @elseif($reviewArg == 1)
-                                        <i class="ri-star-fill"></i>
+                                        <li>
+                                            <i class="ri-star-fill"></i>
+                                        </li>
                                     @elseif($reviewArg == 2)
-                                        <i class="ri-star-fill" ></i>
-                                        <i class="ri-star-fill" ></i>
-
+                                        <li>
+                                            <i class="ri-star-fill" ></i>
+                                            <i class="ri-star-fill" ></i>
+                                        </li>
                                     @elseif($reviewArg == 3 )
-                                        <i class="ri-star-fill" ></i>
-                                        <i class="ri-star-fill" ></i>
-                                        <i class="ri-star-fill" ></i>
-
+                                        <li>
+                                            <i class="ri-star-fill" ></i>
+                                            <i class="ri-star-fill" ></i>
+                                            <i class="ri-star-fill" ></i>
+                                        </li>
                                     @elseif($reviewArg == 4 )
-                                        <i class="ri-star-fill" ></i>
-                                        <i class="ri-star-fill" ></i>
-                                        <i class="ri-star-fill" ></i>
-                                        <i class="ri-star-fill" ></i>
-
+                                        <li>
+                                            <i class="ri-star-fill" ></i>
+                                            <i class="ri-star-fill" ></i>
+                                            <i class="ri-star-fill" ></i>
+                                            <i class="ri-star-fill" ></i>
+                                        </li>
                                     @elseif($reviewArg == 5 )
-                                        <i class="ri-star-fill" ></i>
-                                        <i class="ri-star-fill" ></i>
-                                        <i class="ri-star-fill" ></i>
-                                        <i class="ri-star-fill" ></i>
-                                        <i class="ri-star-fill" ></i>
-
+                                        <li>
+                                            <i class="ri-star-fill" ></i>
+                                            <i class="ri-star-fill" ></i>
+                                            <i class="ri-star-fill" ></i>
+                                            <i class="ri-star-fill" ></i>
+                                            <i class="ri-star-fill" ></i>
+                                        </li>
                                     @endif
-
                                 </ul>
                                 <a  href="{{route('vendor_detail',$item->id)}}"  class="default-btn">
                                     <i class="fa-flash"></i>

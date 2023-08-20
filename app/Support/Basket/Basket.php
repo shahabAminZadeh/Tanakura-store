@@ -12,6 +12,7 @@ class Basket
     private $storage;
     public function __construct(StorageInterFace $storage)
     {
+
         $this->storage = $storage;
     }
     public function add(Pro $pro, int $qty)
@@ -29,6 +30,10 @@ class Basket
         if (!$pro->hasStock($qty))
         {
             throw new QuantityExceededException();
+        }
+        if (!$qty)
+        {
+            return $this->storage->unset($pro->id);
         }
 
 
@@ -60,6 +65,21 @@ class Basket
         }
         return $pros;
     }
+
+    public function subTotal()
+    {
+        $total=0;
+        foreach ($this->all() as $item)
+        {
+            $total += $item->selling_Price * $item->qty;
+        }
+        return $total;
+    }
+    public function clear()
+    {
+        return $this->storage->clear();
+    }
+
 
 
 }

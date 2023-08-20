@@ -71,31 +71,36 @@
                                 @if($reviewArg == 0)
                                     ستاره ای داده نشده
                                 @elseif($reviewArg == 1)
-                                    <i class="ri-star-fill"></i>
+                                    <li>
+                                        <i class="ri-star-fill"></i>
+                                    </li>
                                 @elseif($reviewArg == 2)
-                                    <i class="ri-star-fill" ></i>
-                                    <i class="ri-star-fill" ></i>
-
+                                    <li>
+                                        <i class="ri-star-fill" ></i>
+                                        <i class="ri-star-fill" ></i>
+                                    </li>
                                 @elseif($reviewArg == 3 )
-                                    <i class="ri-star-fill" ></i>
-                                    <i class="ri-star-fill" ></i>
-                                    <i class="ri-star-fill" ></i>
-
+                                    <li>
+                                        <i class="ri-star-fill" ></i>
+                                        <i class="ri-star-fill" ></i>
+                                        <i class="ri-star-fill" ></i>
+                                    </li>
                                 @elseif($reviewArg == 4 )
-                                    <i class="ri-star-fill" ></i>
-                                    <i class="ri-star-fill" ></i>
-                                    <i class="ri-star-fill" ></i>
-                                    <i class="ri-star-fill" ></i>
-
+                                    <li>
+                                        <i class="ri-star-fill" ></i>
+                                        <i class="ri-star-fill" ></i>
+                                        <i class="ri-star-fill" ></i>
+                                        <i class="ri-star-fill" ></i>
+                                    </li>
                                 @elseif($reviewArg == 5 )
-                                    <i class="ri-star-fill" ></i>
-                                    <i class="ri-star-fill" ></i>
-                                    <i class="ri-star-fill" ></i>
-                                    <i class="ri-star-fill" ></i>
-                                    <i class="ri-star-fill" ></i>
-
+                                    <li>
+                                        <i class="ri-star-fill" ></i>
+                                        <i class="ri-star-fill" ></i>
+                                        <i class="ri-star-fill" ></i>
+                                        <i class="ri-star-fill" ></i>
+                                        <i class="ri-star-fill" ></i>
+                                    </li>
                                 @endif
-
                             </ul>
 
 

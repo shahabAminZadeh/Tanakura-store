@@ -105,57 +105,8 @@ class ProductController extends Controller
         return redirect()->back()->with($notification);
 
     }
-    ////////////////////////Card
 
-    public function cart()
-    {
-        return view('cart.cart');
-    }
-    ///////////////////
-    public function addToCart($id)
-    {
-        $product = Pro::findOrFail($id);
 
-        $cart = session()->get('cart', []);
-
-        if(isset($cart[$id])) {
-            $cart[$id]['qty']++;
-        } else {
-            $cart[$id] = [
-                "color"=>$product->color,
-                "size"=>$product->size,
-                "name" => $product->name,
-                "qty" => 1,
-                "selling_Price" => $product->selling_Price,
-                "thambnail" => $product->thambnail
-            ];
-        }
-
-        session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
-    }
-    //////////////////
-    public function update(Request $request)
-    {
-        if($request->id && $request->qty){
-            $cart = session()->get('cart');
-            $cart[$request->id]["qty"] = $request->qty;
-            session()->put('cart', $cart);
-            session()->flash('success', 'Cart updated successfully');
-        }
-    }
-    /////////////////
-      public function remove(Request $request)
-     {
-         if($request->id) {
-             $cart = session()->get('cart');
-             if(isset($cart[$request->id])) {
-                 unset($cart[$request->id]);
-                 session()->put('cart', $cart);
-             }
-             session()->flash('success', 'Product removed successfully');
-         }
-     }
 
 }
 

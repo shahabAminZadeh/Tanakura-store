@@ -89,7 +89,7 @@
 
                                         <ul class="products-cart-wish-view">
                                             <li>
-                                                <a href="wishlist.html" class="wish-btn">
+                                                <a href="{{route('addToWishList',$product->id)}}" class="wish-btn">
                                                     <i class="ri-heart-line"></i>
                                                 </a>
                                             </li>

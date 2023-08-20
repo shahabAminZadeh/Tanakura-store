@@ -21,6 +21,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
+                    @if($items->isEmpty())
+                        <h5> <strong>سبد خرید خالی است </strong>  </h5>
+                    @else
                     <form class="cart-controller">
                         <div class="cart-table table-responsive">
                             <table class="table table-bordered">
@@ -28,7 +31,7 @@
                                 <tr>
                                     <th scope="col">حذف</th>
                                     <th scope="col">محصول</th>
-                                    <th scope="col"></th>
+                                    <th scope="col">نام محصول</th>
                                     <th scope="col">قیمت واحد</th>
                                     <th scope="col">تعداد</th>
                                     <th scope="col">مجموع</th>
@@ -38,51 +41,57 @@
                                 <tbody>
 
 
-                                <tr>
-                                    <td class="trash">
-                                        <a href="shopping-cart.html" class="remove">
-                                            <i class="ri-delete-bin-line"></i>
-                                        </a>
-                                    </td>
-                                    <td class="product-thumbnail">
-                                        <a href="product-details.html">
-                                            <img src="assets/images/products/product-18.jpg" alt="Image">
-                                        </a>
-                                    </td>
 
-                                    <td class="product-name">
-                                        <a href="product-details.html">گوشت تازه گاو</a>
-                                    </td>
+                                    @foreach($items  as $item)
+                                    <tr>
+                                        <td class="trash">
+                                            <a href="shopping-cart.html" class="remove">
+                                                <i class="ri-delete-bin-line"></i>
+                                            </a>
+                                        </td>
+                                        <td class="product-thumbnail">
+                                            <a href="product-details.html">
+                                                <img src="{{URL::asset('/upload/backend/product/'.$product->thambnail)}}" alt="Image">
+                                            </a>
+                                        </td>
 
-                                    <td class="product-price">
-                                        <span class="unit-amount">1100 تومان</span>
-                                    </td>
+                                        <td class="product-name">
+                                            <a href="product-details.html">{{$item->name}}</a>
+                                        </td>
 
-                                    <td class="product-quantity">
-                                        <div class="input-counter">
-													<span class="minus-btn">
-														<i class="ri-subtract-line"></i>
-													</span>
+                                        <td class="product-price">
+                                            <span class="unit-amount">{{$item->selling_Price}} تومان</span>
+                                        </td>
 
-                                            <input type="text" value="1">
+                                        <td>
 
-                                            <span class="plus-btn">
-														<i class="ri-add-line"></i>
-													</span>
-                                        </div>
-                                    </td>
+                                         <form action="{{route('updateBasket',$item->id)}}" method="post" class="form-inline">
+                                             @csrf
+                                             @method('put')
+                                             <select name="qty" id="qty" class="form-control input-sm mr-sm-2">
+                                                 @for($i = 0 ;$i <= $item->qty ; $i++)
+                                                 <option  name="qty" id="qty" {{$item->qty == $i ? 'selected':''}} value="{{$i}}">{{$i}}</option>
+                                                 @endfor
+                                             </select>
 
-                                    <td class="product-subtotal">
-                                        <span class="subtotal-amount">1100 تومان</span>
-                                    </td>
-                                </tr>
+                                             <button style="margin: 7px;" type="submit" class="btn btn-sm btn-info">بروزرسانی</button>
+                                         </form>
+                                        </td>
+
+                                        <td class="product-subtotal">
+                                            <span class="subtotal-amount">1100 تومان</span>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+
+
 
 
                                 </tbody>
                             </table>
                         </div>
                     </form>
-
+                    @endif
                     <div class="coupon-cart">
                         <div class="row">
                             <div class="col-lg-8 col-md-8">
@@ -93,28 +102,24 @@
                                     </button>
                                 </div>
                             </div>
-
-                            <div class="col-lg-4 col-md-4">
-                                <a href="checkout.html" class="default-btn update-cart radius-btn">
-                                    بروزرسانی سبد
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>
-
+                @inject('cost','App\Support\Cost\Contracts\CostInterface')
                 <div class="col-lg-4">
                     <div class="cart-totals">
                         <h3 class="cart-checkout-title">مجموع سبد خرید</h3>
 
                         <ul>
-                            <li>زیرمجموعه <span>2100 تومان</span></li>
-                            <li>کرایه حمل <span>1000 تومان</span></li>
-                            <li>جمع کل <span>3100 تومان</span></li>
-                            <li><b>مبلغ پرداخت</b> <span><b>3100 تومان</b></span></li>
+                            @foreach($cost->getSummary() as $description=>$selling_Price)
+
+                                <li>{{$description}} <span>{{number_format($selling_Price)}} تومان</span></li>
+
+                            @endforeach
+                            <li><b>مبلغ پرداخت</b> <span><b>{{number_format($cost->getTotalCosts())}} تومان</b></span></li>
                         </ul>
 
-                        <a href="checkout.html" class="default-btn radius-btn">
+                        <a href="{{route('checkOut.basket.form')}}" class="default-btn radius-btn">
                             ادامه و پرداخت
                         </a>
                     </div>

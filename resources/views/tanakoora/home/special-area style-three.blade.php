@@ -101,7 +101,7 @@
                             @endphp
 
                             <li class="single-list">
-                                <a href="products.html">
+                                <a href="">
                                     <img src="{{URL::asset('/upload/backend/product/'.$product->thambnail)}}" alt="Image">
                                 </a>
 

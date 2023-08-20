@@ -102,7 +102,7 @@
                             </ul>
                         </div>
 
-                        
+
                         <div class="special-wrap seller-sidebar">
                             <div class="section-title">
                                 <h2>جدیدترین محصولات</h2>
@@ -250,7 +250,7 @@
 
                                         <ul class="products-cart-wish-view">
                                             <li>
-                                                <a href="wishlist.html" class="wish-btn">
+                                                <a href="{{route('addToWishList',$product->id)}}" class="wish-btn">
                                                     <i class="ri-heart-line"></i>
                                                 </a>
                                             </li>

@@ -141,9 +141,6 @@
                                 </select>
                             </div>
                         @endif
-
-
-
                             <input class="hidden" name="id" value="{{$product->id}}">
                             <input class="hidden" name="name" value="{{$product->name}}">
                             <input class="hidden" name="selling_Price" value="{{$product->selling_Price}}">
@@ -152,7 +149,7 @@
 
 
 
-                    <a href="wishlist.html" class="default-btn radius-btn wishlist-btn">
+                    <a href="{{route('addToWishList',$product->id)}}l" class="default-btn radius-btn wishlist-btn">
                         <i class="ri-heart-line"></i>
                         علاقه مندی
                     </a>
@@ -499,7 +496,7 @@
 
                     <ul class="products-cart-wish-view">
                         <li>
-                            <a href="wishlist.html" class="wish-btn">
+                            <a href="{{route('addToWishList',$product->id)}}" class="wish-btn">
                                 <i class="ri-heart-line"></i>
                             </a>
                         </li>

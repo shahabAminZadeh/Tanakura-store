@@ -52,6 +52,7 @@ $sting=\App\Models\Stting::all();
 <!-- Start Header Area -->
 <header class="header-area">
     <!-- Start Top Header -->
+
     <div class="top-header">
         <div class="container">
             <div class="row align-items-center">
@@ -60,17 +61,20 @@ $sting=\App\Models\Stting::all();
                         <li>
                             به فروشگاه موبی تانا آمدید!
                         </li>
+                        @foreach($sting as $item)
                         <li>
                             پشتیبانی؟ تماس بگیرید:
                             <a href="tel:09144422441">
-                                <span></span>
+                                <span>{{$item->support_phone}}</span>
                             </a>
                         </li>
                         <li>
                             <a href="store-location.html">
                                 موقعیت فروشگاه
+                                {{$item->address}}
                             </a>
                         </li>
+                        @endforeach
                         <li>
                             <a href="{{route('VendorBecome')}}">
                                 فروشنده شوید!
@@ -173,13 +177,14 @@ $sting=\App\Models\Stting::all();
 @inject('basket','App\Support\Basket\Basket')
                         <li class="cart-btn">
 									<span class="cart" data-bs-toggle="modal" data-bs-target="#exampleModal-cart">
+
 										<span class="wish-icon">
 											<i class="ri-shopping-cart-line"></i>
 
 
 											<span class="count">{{$basket->itemCount()}}</span>
-
 										</span>
+
 									</span>
 
                             <span class="amount"> تومان</span>
@@ -269,29 +274,7 @@ $sting=\App\Models\Stting::all();
                                 <ul class="dropdown-menu">
                                     <li class="nav-item">
                                         <div class="row">
-                                            <div class="col">
-                                                <h6 class="sub-menu-title">فروشگاه</h6>
 
-                                                <ul class="sub-menu">
-                                                    <li>
-                                                        <a href="products.html">محصولات</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="best-sellers.html">محصولات پرفروش</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="featured-products.html">محصولات ویژه</a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="new-arrivals.html">محصولات جدید</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="categories.html">دسته بندی ها</a>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
 
                                             <div class="col">
                                                 <h6 class="sub-menu-title">صفحات</h6>
@@ -301,15 +284,13 @@ $sting=\App\Models\Stting::all();
                                                         <a href="offer-products.html">تخفیف محصولات</a>
                                                     </li>
                                                     <li>
-                                                        <a href="shopping-cart.html">سبد خرید</a>
+                                                        <a href="{{route('checkOut.basket.form')}}">سبد خرید</a>
 
                                                     </li>
                                                     <li>
-                                                        <a href="wishlist.html">فهرست علاقه مندی</a>
+                                                        <a href="{{route('wishlist')}}">فهرست علاقه مندی</a>
                                                     </li>
-                                                    <li>
-                                                        <a href="success-order.html">پرداخت موفق</a>
-                                                    </li>
+
 
                                                 </ul>
                                             </div>
@@ -382,18 +363,6 @@ $sting=\App\Models\Stting::all();
                                     وبلاگ
                                     <i class="ri-arrow-down-s-line"></i>
                                 </a>
-
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="blog.html" class="nav-link">وبلاگ</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="blog-left-sidebar.html" class="nav-link">وبلاگ سایدبار</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="blog-details.html" class="nav-link">جزئیات وبلاگ</a>
-                                    </li>
-                                </ul>
                             </li>
 
                             @foreach($categories as $category)
@@ -442,58 +411,22 @@ $sting=\App\Models\Stting::all();
                         <i class="ri-close-fill"></i>
                     </button>
                 </div>
-
+                @inject('cost','App\Support\Cost\Contracts\CostInterface')
                 <div class="modal-body">
-                    <ul class="cart-list">
-                        <li>
-                            <i class="ri-delete-bin-line"></i>
-                            <img src="assets/images/products/product-18.jpg" alt="Image">
-                            <a href="shopping-cart.html">
-                                گوشت تازه
-                            </a>
-                            <span>1100 تومان</span>
-                        </li>
-
-                        <li>
-                            <i class="ri-delete-bin-line"></i>
-                            <img src="assets/images/products/product-6.jpg" alt="Image">
-                            <a href="shopping-cart.html">
-                                خرچنگ تازه
-                            </a>
-                            <span>1100 تومان</span>
-                        </li>
-
-                        <li>
-                            <i class="ri-delete-bin-line"></i>
-                            <img src="assets/images/products/product-40.jpg" alt="Image">
-                            <a href="shopping-cart.html">
-                                سبد نان مخلوط
-                            </a>
-                            <span>1100 تومان</span>
-                        </li>
-
-                        <li>
-                            <i class="ri-delete-bin-line"></i>
-                            <img src="assets/images/products/product-42.jpg" alt="Image">
-                            <a href="shopping-cart.html">
-                                سبد کامل سبزیجات
-                            </a>
-                            <span>1100 تومان</span>
-                        </li>
-                    </ul>
+                    @inject('cost','App\Support\Cost\Contracts\CostInterface')
 
                     <ul class="payable">
                         <li>
                             هزینه پرداخت
                         </li>
                         <li class="total">
-                            <span>6100 تومان</span>
+                            <span> {{number_format($cost->getTotalCosts())}} تومان</span>
                         </li>
                     </ul>
 
                     <ul class="cart-check-btn">
                         <li>
-                            <a href="shopping-cart.html" class="default-btn radius-btn">
+                            <a href="{{route('index.basket')}}" class="default-btn radius-btn">
                                 سبد خرید
                             </a>
                         </li>

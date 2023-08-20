@@ -9,7 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
-    protected $guarded=[];
+    protected $fillable = ['user_id','code','amount'];
+    public function pros()
+    {
+        return $this->belongsToMany(Pro::class)->withPivot('qty');
+    }
 
 
 }

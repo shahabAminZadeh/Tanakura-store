@@ -139,6 +139,7 @@
                     </div>
 
                     <div class="deals-products-slider owl-carousel owl-theme">
+
                         <div class="single-products deals-products">
                             <div class="product-img">
                                 <div id="timer">
@@ -185,52 +186,7 @@
                             </div>
                         </div>
 
-                        <div class="single-products deals-products">
-                            <div class="product-img">
-                                <div id="timers">
-                                    <div id="days-p"></div>
-                                    <div id="hours-p"></div>
-                                    <div id="minutes-p"></div>
-                                    <div id="seconds-p"></div>
-                                </div>
 
-                                <a href="product-details.html">
-                                    <img src="{{asset('tanakoora/assets/images/products/product-54.jpg')}}" alt="Image">
-                                </a>
-                            </div>
-
-                            <div class="product-content">
-                                <a href="product-details.html" class="title">
-                                    حبوبات تازه
-                                </a>
-
-                                <ul class="products-price">
-                                    <li>
-                                        3100 تومان
-                                        <del>5200 تومان</del>
-                                        <span class="available">در دسترس</span>
-                                    </li>
-                                </ul>
-
-                                <ul class="products-rating">
-                                    <li>
-                                        <i class="ri-star-fill"></i>
-                                    </li>
-                                    <li>
-                                        <i class="ri-star-fill"></i>
-                                    </li>
-                                    <li>
-                                        <i class="ri-star-fill"></i>
-                                    </li>
-                                    <li>
-                                        <i class="ri-star-fill"></i>
-                                    </li>
-                                    <li>
-                                        <i class="ri-star-fill"></i>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

@@ -44,11 +44,7 @@
                                 سبد خرید
                             </a>
                         </li>
-                        <li class="checkout">
-                            <a href="checkout.html" class="default-btn radius-btn">
-                                بررسی محصول
-                            </a>
-                        </li>
+
                     </ul>
                 </div>
             </div>

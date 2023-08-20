@@ -306,35 +306,22 @@ Route::prefix('role')->group(function ()
 
 
 });
-
-
-////////////Card
-
-Route::prefix('card')->group(function ()
-{
-    Route::get('cart', [ProductController::class, 'cart'])->name('cart');
-    Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add.to.cart');
-    Route::patch('update-cart', [ProductController::class, 'update'])->name('update.cart');
-    Route::delete('remove-from-cart', [ProductController::class, 'remove'])->name('remove.from.cart');
-
-});
-
-///////////////////Cart
-Route::prefix('cart')->group(function ()
-{
-    Route::get('cart',[CartController::class,'index'])->name('cart.index');
-    Route::post('cart',[CartController::class,'store'])->name('cart.store');
-    Route::get('empty',function (){
-        \Cart::destroy();
-    });
-});
-
 ////////////////Basket
 Route::prefix('basket')->group(function ()
 {
-   Route::get('add/basket/{pro}',[\App\Http\Controllers\frontend\BasketController::class,'add'])->name('add.basket');
-   Route::get('index/basket',[\App\Http\Controllers\frontend\BasketController::class,'index'])->name('index.basket');
-   Route::get('basket/clear',function (){
-       resolve(StorageInterFace::class)->clear();
-   });
+
+    Route::get('add/basket/{pro}',[\App\Http\Controllers\frontend\BasketController::class,'add'])->name('add.basket');
+    Route::get('index/basket', [\App\Http\Controllers\frontend\BasketController::class, 'index'])->name('index.basket');
+    Route::put('update/{id}/basket', [\App\Http\Controllers\frontend\BasketController::class, 'update'])->name('updateBasket');
+    Route::get('clear/basket', function () {
+        resolve(StorageInterFace::class)->clear();
+    });
+    Route::middleware(['auth'])->group(function () {
+        Route::get('checkOut/basket', [\App\Http\Controllers\frontend\BasketController::class, 'checkOutForm'])->name('checkOut.basket.form');
+        Route::post('checkOut/basket', [\App\Http\Controllers\frontend\BasketController::class, 'checkOut'])->name('checkOut.basket');
+    });
+
 });
+Route::post('payment/{gateway}/callback', [\App\Http\Controllers\frontend\paymentController::class, 'verify'])->name('payment.verify');
+
+
