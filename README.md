@@ -1,18 +1,18 @@
-سیستم مدیریت موجودی
-مدیریت نقش کاربر
-احراز هویت چندگانه به عنوان کاربر، فروشنده و ادمین
-گزینه جستجوی پیشرفته محصول
-نقش ها و مجوزهای کاربر
-انتخاب چند ادمین برای فروشگاه
-کوپن پیشرفته درخواست محصول
-سیستم نظر و رتبه بندی برای محصول
-قیمت محصول با تخفیف
-گزینه لیست محصولات مورد علاقه (علاقه مندی ها)
-گزینه مقایسه محصول
-گزینه پیشرفته «افزودن به سبد خرید»سیستم آپلود تصویر
-سیستم آپلود چند تصویر
-افزودن تم حرفه ای به بک اند
-افزودن تم حرفه ای به فرانت اند
-احراز هویت چندگانه با Jetstream Breeze
-اصول اولیه لاراول 9 از صفر تا صد
-مدیریت وبلاگ تجارت الکترونیک
+Inventory management system ;
+User role management ;
+Multiple authentication as user, seller and admin ;
+Advanced product search option ;
+User roles and permissions ;
+Choosing multiple admins for the store ;
+Advanced product request coupon ;
+Comment and rating system for the product ;
+Discounted product price ;
+Option to list favorite products (favorites) ;
+Product comparison option ;
+Advanced "add to cart" image upload system option ;
+Multiple image upload system ;
+Adding a professional theme to the backend ;
+Adding a professional theme to the front end ;
+Multiple authentication with Jetstream Breeze ;
+The basics of Laravel 9 from zero to one hundred ;
+E-commerce blog management ;
